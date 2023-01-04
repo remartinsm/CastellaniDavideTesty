@@ -36,11 +36,12 @@
 1. git clone https://gitee.com/kesin/taskover
 2. cd taskover
 3. bundle install
-4. cp database.yml.example database.yml  #修改数据库配置
-5. cp puma.rb.example puma.rb
-6. bundle exec rake db:migrate
-7. cp development.rb.example development.rb
-8. bundle exec puma
+4. cp config/database.yml.example config/database.yml  #修改数据库配置
+5. cp config/puma.rb.example config/puma.rb
+6. bundle exec rake db:create
+7. bundle exec rake db:migrate
+8. cp config/environments/development.rb.example config/environments/development.rb
+9. bundle exec puma
 
 访问 http://127.0.0.1:3001
 
