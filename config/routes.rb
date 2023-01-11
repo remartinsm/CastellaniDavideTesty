@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   authenticated do
-    root to: 'plans#index'
+    root to: 'plans#index', as: nil
   end
 
   root to: 'home#index'

@@ -3,7 +3,6 @@ pidfile "#{app_root}/tmp/pids/puma.pid"
 state_path "#{app_root}/tmp/pids/puma.state"
 stdout_redirect "#{app_root}/log/puma.stdout.log", "#{app_root}/log/puma.stderr.log", true
 bind 'tcp://127.0.0.1:3001'
-daemonize true
 workers 2
 threads 4, 8
 preload_app!

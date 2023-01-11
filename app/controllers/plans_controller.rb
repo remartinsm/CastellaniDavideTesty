@@ -82,8 +82,8 @@ class PlansController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_plan
-      return unless json_request?
       @plan = current_user.plans.find_by_ident(params[:id])
+      return unless json_request?
       return render json: { status: 'failed', alert: '此计划不存在' } unless @plan
     end
 
