@@ -9,14 +9,15 @@ default: &default
   encoding: utf8
   reconnect: false
   pool: 5
-  database: taskover
-  username: root
-  password: ""
+  host: <%= ENV['DATABASE_HOST'] %>
+  database: <%= ENV['DATABASE_NAME'] %> 
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   timeout: 5000
 
 development:
   <<: *default
-  database: taskover
+  database: taskover_dev
 
 test:
   <<: *default
@@ -24,4 +25,4 @@ test:
 
 production:
   <<: *default
-  database: taskover_production
+  database: <%= ENV['DATABASE_NAME'] %>

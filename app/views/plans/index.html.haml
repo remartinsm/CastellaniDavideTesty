@@ -139,7 +139,7 @@
         xhr.open("POST", PlanUrl)
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
         xhr.onload = function () {
-          if (result.status != 'undefined' && result.status == 'failed'){
+          if (typeof(result) != 'undefined' && typeof(result.status) != 'undefined' && result.status == 'failed'){
             self.newPlanField = false
             notifyTop(result.message)
           }else{
