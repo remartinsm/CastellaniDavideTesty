@@ -8,6 +8,7 @@ RUN apt-get update \
 		nodejs \
 		vim
 ARG DATABASE_HOST="10.211.55.2" \
+	DATABASE_ROOT="3306" \
 	DATABASE_USER="zoker" \
 	DATABASE_PASSWORD="zoker" \
 	DATABASE_NAME="taskover"\
