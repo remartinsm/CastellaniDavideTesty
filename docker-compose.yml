@@ -1,0 +1,25 @@
+version: '3.1'
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: taskover
+    container_name: mysqldb
+
+  taskover:
+    image: zoker/taskover:1.0.0
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: "mysqldb"
+      DATABASE_PORT: "3306"
+      DATABASE_USER: "root"
+      DATABASE_PASSWORD: "root"
+      DATABASE_NAME: "taskover"
+      SECRET_KEY_BASE: "ASECRETFORBUILD"
+      RAILS_SERVE_STATIC_FILES: 1

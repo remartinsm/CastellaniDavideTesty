@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "taskover.fullname" . }}
+  labels:
+    {{- include "taskover.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "taskover.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      name: {{ include "taskover.fullname" . }} 
+      labels:
+        {{- include "taskover.labels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: {{ include "taskover.fullname" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }} 
+          env:
+            - name: DATABASE_HOST
+              value: "{{ .Values.image.env.dbhost }}" 
+            - name: DATABASE_PORT
+              value: "{{ .Values.image.env.dbport }}"
+            - name: DATABASE_USER
+              value: "{{ .Values.image.env.dbuser }}"
+            - name: DATABASE_PASSWORD
+              value: "{{ .Values.image.env.dbpasswd }}"
+            - name: DATABASE_NAME
+              value: "{{ .Values.image.env.dbname }}"
+            - name: SECRET_KEY_BASE
+              value: "{{ .Values.image.env.secretkey }}"
+            - name: RAILS_SERVE_STATIC_FILES
+              value: "{{ .Values.image.env.static }}" 
