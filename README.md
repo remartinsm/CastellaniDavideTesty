@@ -29,7 +29,48 @@
 ##### 简单高效的任务管理（Task）
 ![输入图片说明](public/files/taskover3.gif "在这里输入图片标题")
 
-#### 使用
+#### 部署
+
+##### Docker 部署
+
+指定数据库以及相关信息，一条命令即可 Run 起来：
+
+```
+docker run -p3001:3001 -d --name=taskover \
+-e DATABASE_HOST=10.211.55.2 \
+-e DATABASE_PORT=3306 \
+-e DATABASE_USER="zoker" \
+-e DATABASE_PASSWORD="zoker" \
+-e DATABASE_NAME="taskover" \
+-e SECRET_KEY_BASE="ASECRETFORBUILD" \
+-e RAILS_SERVE_STATIC_FILES=1 \
+zoker/taskover:1.0.0
+```
+
+##### Docker Compose 部署
+
+```
+docker-compose up
+```
+
+##### Kubernetes 部署
+
+```
+cd src
+kubectl create -f taskover.yaml
+kubectl create -f taskover-svc.yaml
+```
+
+##### Helm Chart 部署
+
+```
+cd src/k8s/helm
+helm install taskover ./
+```
+
+访问 http://127.0.0.1:3001
+
+#### 开发环境搭建
 
 项目基于 `Ruby 2.3.8` 及以上
 
